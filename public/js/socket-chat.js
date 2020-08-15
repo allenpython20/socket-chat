@@ -15,6 +15,7 @@ var usuario = {
 socket.on('connect', function() {
     socket.emit('entrarChat',usuario,function(resp){
         console.log("Usuarios conectados a la sala",resp)
+        renderizarUsuarios(resp);
     })
 });
 
@@ -30,6 +31,8 @@ socket.on('connect', function() {
 socket.on('crearMensaje', function(resp) {
 
     console.log('Servidor:', resp);
+    renderizarMensajes(resp,false)
+    scrollBottom()
 
 });
 
@@ -37,6 +40,7 @@ socket.on('crearMensaje', function(resp) {
 socket.on('listaPersona', function(usuarios) {
 
     console.log(usuarios);
+    renderizarUsuarios(usuarios);
 
 });
 
